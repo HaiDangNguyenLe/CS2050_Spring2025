@@ -1,4 +1,14 @@
-
+/*
+ Name: HAIDANG LE
+ Class: CS2050 CS 2 With Java
+ Metropolitan State University of Denver
+ Spring 2025 
+ Instructor: Deb Harding (she/her/hers)    Email: dhardi11@msudenver.edu  Office: EAS 200BB
+ 
+ Description: Guide Exploration 01 - Test Simple Rectangle
+ ●	Create SimpleRectangle class. Data Field: double length, double width. Constructor and Getter/setter methods. getArea and getPerimeter methods
+ ●	Create 3 rectangle. Call the methods for each rectangle to print the area and perimeter for each of the 3 rectangles. 
+ */
 public class HaiDangLeTestSimpleRectangle {
 
 	public static void main(String[] args) {
@@ -19,13 +29,11 @@ public class HaiDangLeTestSimpleRectangle {
 class SimpleRectangle{
 	private double length;
 	private double width;
-	
-	//constructor rectangle with default size
+		//constructor rectangle with default size
 	public SimpleRectangle() {
 		
 	}
-	
-	//constructor with specific length and width
+		//constructor with specific length and width
 	public SimpleRectangle(double newLength, double newWidth) {
 		length = newLength;
 		width = newWidth;
