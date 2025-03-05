@@ -106,11 +106,11 @@ public class HaiDangLeGE01Polymorphism {
 }//end HaiDangLeGE01Polymorphism
 
 class Animal {
-	private String name;
-	private String food;
-	private int weight;
-	private int sleep;
-	private String location;
+	private	String name;
+	private	String food;
+	private	int weight;
+	private	int sleep;
+	private	String location;
 
 	//constructor with specific parameters
 	public Animal(String name, String food, int weight, int sleep, String location) {
@@ -157,6 +157,7 @@ class Bear extends Animal {
 	public Bear(String name, String food, int weight, int sleep, String location) {
 		super(name, food, weight, sleep, location);
 	}
+	
 	@Override
 	public void eat() {
 		System.out.println("Bear is eating " + getFood());

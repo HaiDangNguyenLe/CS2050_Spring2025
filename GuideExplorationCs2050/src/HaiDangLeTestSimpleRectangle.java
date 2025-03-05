@@ -33,7 +33,7 @@ class SimpleRectangle{
 	public SimpleRectangle() {
 		
 	}
-		//constructor with specific length and width
+	//constructor with specific length and width
 	public SimpleRectangle(double newLength, double newWidth) {
 		length = newLength;
 		width = newWidth;
