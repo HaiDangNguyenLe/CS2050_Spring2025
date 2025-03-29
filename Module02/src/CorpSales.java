@@ -52,7 +52,10 @@ public class CorpSales
 		totalSales = calculateArraySum(sales);
 		// Display the total sales.
 		System.out.println("total sales is: " + totalSales+"$");
-
+		//Display max sale
+		double maxSale = findMax(sales);
+		System.out.println("Max sale is: " + maxSale);
+		System.out.println(" Divs and qrts has max sale is "+findDivsAndQrtsOfMaxSale(sales));
 		keyboard.close();
 		
 	}//end main
@@ -69,7 +72,34 @@ public class CorpSales
 		}
 		System.out.println();
 	}
-
+	//find max
+	public static double findMax(double[][] anArray) {
+		double max = anArray[0][0];
+		for (int row = 0; row < anArray.length; row++) {
+			for(int col = 0; col < anArray[row].length; col++) {
+				if(anArray[row][col]>max) {
+					max=anArray[row][col];
+				}
+			}
+		}
+	return max;
+	}
+	//find divs and qrts of max sale
+	public static int[] findDivsAndQrtsOfMaxSale(double[][] anArray) {
+		int divs = 0;
+		int qrts = 0;
+		double max = anArray[0][0];
+		for (int row = 0; row < anArray.length; row++) {
+			for(int col = 0; col < anArray[row].length; col++) {
+				if (anArray[row][col]> max ) {
+					max = anArray[row][col];
+					divs = row;
+					qrts = col;
+				}
+			}
+		}
+		return new int[] {divs,qrts};
+	}
 	//write method calculateArraySum
 	public static double calculateArraySum(double[][] anArray) {
 		double sumOfArray = 0;
