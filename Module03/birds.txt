@@ -1,7 +1,0 @@
-6 
-penguin Bobo 15 
-duck Dewey 4 
-sootytern Cruiser 0 
-ostrich Oscar 0 
-penguin Oreo 17 
-ostrich Max 0
