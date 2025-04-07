@@ -1,0 +1,98 @@
+/**
+ * 
+ */
+
+/**
+ * 
+ */
+public class L17FixSinglyLinkedOrderedList
+{
+
+	// Test the Singly Linked List
+	public static void main(String[] args)
+	{
+		SinglyLinkedListFix list = new SinglyLinkedListFix();
+		list.insertNode(4);
+		list.insertNode(2);
+		list.insertNode(8);
+		list.insertNode(3);
+
+		list.printList();
+		list.deleteNode(0);
+		list.deleteNode(3);
+		list.printList();
+	}
+
+}
+
+
+class NodeFix {
+    int data;
+    NodeFix next;
+
+    public NodeFix(int data) {
+        this.data = data;
+        this.next = null;
+    }
+}
+
+class SinglyLinkedListFix {
+	NodeFix head;
+
+    // BUGGY insertNode method
+    public void insertNode(int number) {
+    	NodeFix newNode = new NodeFix(number);
+    	NodeFix current = head;
+    	NodeFix previous = null;
+    	
+        // run while loop for all node ( current != null, mean to the end)
+    	// cont run while loop when current.data < number, ultil it's not, stop while loop
+    	// update previous and current: this is right position to insert number
+    	while (current != null && current.data < number) {
+            previous = current; //update previous /move to right 1 step
+            current = current.next; //update current to next node. it 's variable control for while loop
+        }
+        //insert node to determined position between previous and current
+        //if linked list empty, asign newNode to head
+    	if (previous == null) {
+            newNode.next = head;
+            head = newNode;
+        //insert newNode to right position between previous and current
+    	} else {
+            previous.next = newNode; //previous link to newNode
+            newNode.next = current; //newNode link to current
+        }
+    }
+
+    // BUGGY deleteNode method
+    public void deleteNode(int number) {
+    	NodeFix current = head;
+    	NodeFix previous = null;
+    	//find right node to delete
+        while (current != null && current.data != number) { // Bug #3: Incorrect loop termination
+            previous = current; 
+            current = current.next;
+        }
+        if (current == null) {
+			System.out.println("Node not found");
+		}
+        //delete node
+        if(current != null) {
+        	 if (previous == null) {
+                 head = current.next;
+             } else {
+                 previous.next = current.next; // previous.next link to current.next, mean reject  current node from list
+             }
+        }
+       
+    }
+
+    public void printList() {
+    	NodeFix current = head;
+        while (current != null) {
+            System.out.print(current.data + " → ");
+            current = current.next;
+        }
+        System.out.println("null");
+    }
+}
