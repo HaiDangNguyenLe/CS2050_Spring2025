@@ -13,12 +13,12 @@
 	●	Retrieve cars from a location for clients to test drive
  */
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.io.File;
 import java.io.FileNotFoundException;
 
-
-public class Project01CarVendingMachine {
+public class SubmittedProject01CarVendingMachine {
 
 	public static void main(String[] args) {
 		Scanner keyboard = new Scanner(System.in);
@@ -166,7 +166,7 @@ class VendingMachine {
 	public void loadCarDataFromFile(Car[][] carTower, String filename ) {
 		try {
 			Scanner fileScanner = new Scanner(new File(filename));
-			while(fileScanner.hasNext()) {
+			while(fileScanner.hasNext()) { //changed: using hasNext() instead hasNextLine()
 				int floor = fileScanner.nextInt();
 				int space = fileScanner.nextInt();
 				int year = fileScanner.nextInt();
@@ -174,16 +174,13 @@ class VendingMachine {
 				String brand = fileScanner.next();
 				String model = fileScanner.next();
 				Car aCar = new Car(brand, model, year,price);
-											
 				addCar(carTower, floor, space, aCar);
 			}
 			fileScanner.close();
 		}catch(FileNotFoundException e) {
 			System.out.println("File " + filename + " was not found");
-		}		
-		
-		
-
+		}
+				
 	}//end loadCarDataFromFile
 
 	/**
