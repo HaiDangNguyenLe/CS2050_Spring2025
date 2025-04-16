@@ -57,8 +57,10 @@ abstract class Vehicle{
 
 //Interface for electric vehicle
 interface Electric {
-	void chargeBattery();
-}
+	
+	void chargeBattery(); //abstract method
+}//end
+
 //interface for gas-powered vehicle
 interface GasPowered {
 	void refuelGas();

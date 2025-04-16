@@ -32,11 +32,14 @@ public class L19CollectionSortBooksLinkedList
 		System.out.println();
 
 		// Step 2: ***Convert to ArrayList for sorting
+		
 		List<Book> books = new ArrayList<>(bookInventory);
 
 		// Step 3: Sort by Title
 		System.out.println("3. Books sorted by title:");
+		
 		books.sort(Comparator.comparing(Book::getTitle));
+		
 		for (Book currentBook : books) //working through each book
 		{
 			System.out.println(currentBook);
@@ -45,8 +48,9 @@ public class L19CollectionSortBooksLinkedList
 		System.out.println();
 
 		// Step 4: Sort by year (newest to oldest)
-		// add code
+		
 		System.out.println("4. Books sorted by Year:");
+		
 		books.sort(Comparator.comparing(Book::getYear).reversed());
 		
 		for (Book currentBook : books) //working through each book
@@ -55,16 +59,19 @@ public class L19CollectionSortBooksLinkedList
 		}
 
 		System.out.println();
+		
 		// Step 5: Sort by author then title
-		// add code
+		
 		System.out.println("5. Books sorted by Author then Title:");
+		
 		books.sort(Comparator.comparing(Book::getAuthor).thenComparing(Book::getTitle));
-		//System.out.println();
+		
 		for (Book currentBook : books) //working through each book
 		{
 			System.out.println(currentBook);
 		}
 
+		
 		// Step 6: ***Add Queue for signing out books
 		Queue<Book> signOutQueue = new LinkedList<>();
 
@@ -105,11 +112,15 @@ public class L19CollectionSortBooksLinkedList
 		
 		// Step 10: Use HashMap to organize books by title
 		System.out.println("\nStep 10 HashMap of books by title:");
-	    Map<String, Book> bookMapByTitle = new HashMap<>();
+	    
+		Map<String, Book> bookMapByTitle = new HashMap<>();
+	    
 	    //Using for loop to create hashmap quickly for book titles
 	    //Remember title must be unique
 	    for (Book book : bookInventory) {
-	        bookMapByTitle.put(book.getTitle(), book);  // key = title, value = book
+	    	
+	    	//Add the book to the hashmap bookMapByTitle
+	    	bookMapByTitle.put(book.getTitle(), book);  // key = title, value = book
 	    }
 	   	    
 	   //Then update the code to 
@@ -131,9 +142,12 @@ public class L19CollectionSortBooksLinkedList
 	  		//Add code to allow the user to enter the title to search the book inventory
 	  		System.out.println("enter a book title to search");
 	  		String searchBookTitle = keyboard.nextLine();
-	  		 //containsKey Returns true if the key exists
+	  		 
+	  		//containsKey Returns true if the key exists
 		    if (bookMapByTitle.containsKey(searchBookTitle)) {
-		        System.out.println("Found book: " + bookMapByTitle.get(searchBookTitle));
+		       
+		    	System.out.println("Found book: " + bookMapByTitle.get(searchBookTitle));
+		    	
 		    } else {
 		        System.out.println("Book not found: " + searchBookTitle);
 		    }

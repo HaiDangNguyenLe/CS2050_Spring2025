@@ -61,6 +61,7 @@ class DoublyLinkedListL18
 	NodeL18 head;
 
 	// Insert at the end (already implemented)
+	
 	public void insertAtEnd(int data)
 	{
 		NodeL18 newNode = new NodeL18(data);
@@ -95,9 +96,9 @@ class DoublyLinkedListL18
 	// Students must complete this method
 	public void insertAtHead(int data)
 	{
-		// Implement this
 		System.out.println("Implement Insert at the Head:" + data);
 		NodeL18 newNode = new NodeL18(data);
+		
 		if (head == null)
 		{
 			head = newNode;
@@ -112,11 +113,12 @@ class DoublyLinkedListL18
 	// Students must complete this method
 	public void deleteNode(int data)
 	{
-		// Implement this
 		System.out.println("Implement delete node:" + data);
 		NodeL18 current = head;
 		NodeL18 previous = null;
 		boolean found = false;
+		
+		//find right node to delete
 		while (current != null && !found){
 			if (current.data == data){
 				found = true;
@@ -125,6 +127,7 @@ class DoublyLinkedListL18
 				current = current.next;
 			}
 		}
+		////delete node
 		if (found){
 			if (previous == null){
 				head = current.next;

@@ -10,6 +10,7 @@ public class L16ArrayListBird {
 		try {
 			// Stores the bird objects in an ArrayList
 			ArrayList<Birds> birds = birdSetup("birds.txt");
+			
 			//Displays all bird details, including an interesting fact for each bird type
 			displayAllBirds(birds);
 			//Displays a table of birdst that can swim
@@ -19,12 +20,17 @@ public class L16ArrayListBird {
 			System.out.println("File not found.");
 		}
 
+//Array list of intergers
+ArrayList<Integer> myList = new ArrayList<>();
 
 	}//end main
 
 	// Reads bird data from a file  
 	public static ArrayList<Birds> birdSetup(String filename) throws FileNotFoundException {
+		
+		//Create ArrayList of bird objects
 		ArrayList<Birds> birds = new ArrayList<>();
+		
 		Scanner fileScanner = new Scanner(new File(filename));
 		
 		while (fileScanner.hasNext()) {
@@ -60,8 +66,7 @@ public class L16ArrayListBird {
 	//Display type
 	public static String getType(Birds bird) {
 		String type = "unknown";
-		
-		if (bird instanceof Penguin) {
+				if (bird instanceof Penguin) {
             type = "Penguin";
         } else if (bird instanceof Duck) {
             type = "Duck";
@@ -72,7 +77,6 @@ public class L16ArrayListBird {
         } else {
             type = "Unknown";
         }
-		
 		return type;
 	}
 	//Display all birds 
@@ -88,6 +92,7 @@ public class L16ArrayListBird {
 	// Method to find all swimming birds
 	public static ArrayList<Swimmer> findSwimmers(ArrayList<Birds> birds){
 		ArrayList<Swimmer> swimmers = new ArrayList<>();
+		
 		for (Birds bird : birds){
 			if (bird instanceof Swimmer){
 				swimmers.add((Swimmer) bird);

@@ -44,11 +44,12 @@ class SinglyLinkedListFix {
     	NodeFix newNode = new NodeFix(number);
     	NodeFix current = head;
     	NodeFix previous = null;
-    	
-        // run while loop for all node ( current != null, mean to the end)
+    	        // run while loop for all node ( current != null, mean to the end)
     	// cont run while loop when current.data < number, ultil it's not, stop while loop
     	// update previous and current: this is right position to insert number
+    	
     	while (current != null && current.data < number) {
+    		
             previous = current; //update previous /move to right 1 step
             current = current.next; //update current to next node. it 's variable control for while loop
         }
@@ -81,7 +82,7 @@ class SinglyLinkedListFix {
         	 if (previous == null) {
                  head = current.next;
              } else {
-                 previous.next = current.next; // previous.next link to current.next, mean reject  current node from list
+                 previous.next = current.next; // previous.next link to current.next, reject current node
              }
         }
        

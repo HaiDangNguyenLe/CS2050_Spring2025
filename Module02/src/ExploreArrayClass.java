@@ -5,6 +5,7 @@ public class ExploreArrayClass {
 	public static void main(String[] args) {
 		//create new array with 10 integers
 		int[] numberArray = new int [10];
+		
 		int length = numberArray.length;
 		for (int i = 0; i < length; i++) {
 			numberArray[i] = (int)(Math.random()*10);

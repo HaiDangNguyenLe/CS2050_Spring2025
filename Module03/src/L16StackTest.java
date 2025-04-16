@@ -59,7 +59,6 @@ class Stack<T> {
         this.items = new ArrayList<>();
     }
 
-
     public boolean isEmpty() {
         return this.items.isEmpty();
     }
