@@ -44,23 +44,24 @@ class SinglyLinkedListFix {
     	NodeFix newNode = new NodeFix(number);
     	NodeFix current = head;
     	NodeFix previous = null;
-    	        // run while loop for all node ( current != null, mean to the end)
-    	// cont run while loop when current.data < number, ultil it's not, stop while loop
-    	// update previous and current: this is right position to insert number
     	
-    	while (current != null && current.data < number) {
-    		
-            previous = current; //update previous /move to right 1 step
-            current = current.next; //update current to next node. it 's variable control for while loop
+    	// update previous and current: this is right position to insert number
+    	while (current != null &&          // run while loop for all node ( current != null, mean to the end)
+    		   current.data < number) {    // increasing odder, so number must be < than current node data
+    		//update previous and current : move to right 1 step
+            previous = current;
+            current = current.next; 
         }
-        //insert node to determined position between previous and current
-        //if linked list empty, asign newNode to head
-    	if (previous == null) {
+        
+        //if linked list empty, asign newNode is head
+    	if (previous == null) { //chi co head
             newNode.next = head;
             head = newNode;
+        
         //insert newNode to right position between previous and current
     	} else {
-            previous.next = newNode; //previous link to newNode
+           //link newnode between previous and current
+    		previous.next = newNode; //previous link to newNode
             newNode.next = current; //newNode link to current
         }
     }
@@ -69,19 +70,21 @@ class SinglyLinkedListFix {
     public void deleteNode(int number) {
     	NodeFix current = head;
     	NodeFix previous = null;
-    	//find right node to delete
-        while (current != null && current.data != number) { // Bug #3: Incorrect loop termination
+    	//move to the right ultil find out node.data = number (delete value)
+        while (current != null && current.data != number) { // current = number to delete
             previous = current; 
             current = current.next;
         }
+        //linked empty, nothing to delete
         if (current == null) {
 			System.out.println("Node not found");
 		}
+        
         //delete node
-        if(current != null) {
-        	 if (previous == null) {
-                 head = current.next;
-             } else {
+        if(current != null) {          //linkedlist NOt empty
+        	 if (previous == null) {   //mean current is head
+                 head = current.next;  //delete current, head = current.next (value on rightside of current)
+             } else {                  //current is a node on right of head
                  previous.next = current.next; // previous.next link to current.next, reject current node
              }
         }

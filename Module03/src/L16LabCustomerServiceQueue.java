@@ -8,7 +8,7 @@ public class L16LabCustomerServiceQueue
 {
 	public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        CustomerQueue serviceQueue = new CustomerQueue();
+        //CustomerQueue<Customer> serviceQueue = new CustomerQueue<>();
         boolean running = true;
 
         while (running) {

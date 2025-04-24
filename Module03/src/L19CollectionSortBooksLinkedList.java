@@ -13,7 +13,7 @@ public class L19CollectionSortBooksLinkedList
 	{
 
 		Scanner keyboard = new Scanner(System.in) ;
-		
+
 		// Step 1: Create a LinkedList (dynamic)
 		LinkedList<Book> bookInventory = new LinkedList<>();
 
@@ -22,6 +22,7 @@ public class L19CollectionSortBooksLinkedList
 		bookInventory.add(new Book("The Mathematics of Love", "Hannah Fry", 2015));
 		bookInventory.add(new Book("Weapons of Math Destruction", "Cathy O’Neil", 2016));
 		bookInventory.add(new Book("Race After Technology", "Ruha Benjamin", 2019));
+
 
 		System.out.println("Original LinkedList of books:");
 		for (Book currentBook : bookInventory)
@@ -32,14 +33,14 @@ public class L19CollectionSortBooksLinkedList
 		System.out.println();
 
 		// Step 2: ***Convert to ArrayList for sorting
-		
+
 		List<Book> books = new ArrayList<>(bookInventory);
 
 		// Step 3: Sort by Title
 		System.out.println("3. Books sorted by title:");
-		
+
 		books.sort(Comparator.comparing(Book::getTitle));
-		
+
 		for (Book currentBook : books) //working through each book
 		{
 			System.out.println(currentBook);
@@ -48,30 +49,30 @@ public class L19CollectionSortBooksLinkedList
 		System.out.println();
 
 		// Step 4: Sort by year (newest to oldest)
-		
+
 		System.out.println("4. Books sorted by Year:");
-		
+
 		books.sort(Comparator.comparing(Book::getYear).reversed());
-		
+
 		for (Book currentBook : books) //working through each book
 		{
 			System.out.println(currentBook);
 		}
 
 		System.out.println();
-		
+
 		// Step 5: Sort by author then title
-		
+
 		System.out.println("5. Books sorted by Author then Title:");
-		
+
 		books.sort(Comparator.comparing(Book::getAuthor).thenComparing(Book::getTitle));
-		
+
 		for (Book currentBook : books) //working through each book
 		{
 			System.out.println(currentBook);
 		}
 
-		
+
 		// Step 6: ***Add Queue for signing out books
 		Queue<Book> signOutQueue = new LinkedList<>();
 
@@ -109,55 +110,71 @@ public class L19CollectionSortBooksLinkedList
 		System.out.println("9. search books by author and year: ");
 		List<Book> foundBooks = findBooks(bookInventory, "Hannah Fry", 2018);
 		printBooks(foundBooks, "Hannah Fry", 2018);
-		
+
 		// Step 10: Use HashMap to organize books by title
 		System.out.println("\nStep 10 HashMap of books by title:");
-	    
+
 		Map<String, Book> bookMapByTitle = new HashMap<>();
-	    
-	    //Using for loop to create hashmap quickly for book titles
-	    //Remember title must be unique
-	    for (Book book : bookInventory) {
-	    	
-	    	//Add the book to the hashmap bookMapByTitle
-	    	bookMapByTitle.put(book.getTitle(), book);  // key = title, value = book
-	    }
-	   	    
-	   //Then update the code to 
-	  		//Allow  the user to enter a book title , author and year.
-	  		System.out.print("enter a book Title: ");
-	  		String bookTitle = keyboard.nextLine();
-	  		System.out.print("\nenter a book Author: ");
-	  		String author = keyboard.nextLine();
-	  		System.out.print("\nenter year: ");
-	  		int year = keyboard.nextInt();
-	  		keyboard.nextLine();
-	  		
-	  		//Add the book to the bookInventory linked list
-	  		Book newBook = new Book (bookTitle, author, year) ;
-	  		
-	  		//Add the book to the hashmap bookMapByTitle
-	  		bookMapByTitle.put(bookTitle, newBook);
-	  		
-	  		//Add code to allow the user to enter the title to search the book inventory
-	  		System.out.println("enter a book title to search");
-	  		String searchBookTitle = keyboard.nextLine();
-	  		 
-	  		//containsKey Returns true if the key exists
-		    if (bookMapByTitle.containsKey(searchBookTitle)) {
-		       
-		    	System.out.println("Found book: " + bookMapByTitle.get(searchBookTitle));
-		    	
-		    } else {
-		        System.out.println("Book not found: " + searchBookTitle);
-		    }
-		    
-	
+
+		//Using for loop to create hashmap quickly for book titles
+		//Remember title must be unique
+		for (Book book : bookInventory) {
+
+			//Add the book to the hashmap bookMapByTitle
+			bookMapByTitle.put(book.getTitle(), book);  // key = title, value = book
+		}
+
+		//Then update the code to 
+		//Allow  the user to enter a book title , author and year.
+		System.out.print("enter a book Title: ");
+		String bookTitle = keyboard.nextLine();
+		System.out.print("\nenter a book Author: ");
+		String author = keyboard.nextLine();
+		System.out.print("\nenter year: ");
+		int year = keyboard.nextInt();
+		keyboard.nextLine();
+
+		//Add the book to the bookInventory linked list
+		Book newBook = new Book (bookTitle, author, year) ;
+
+		//Add the book to the hashmap bookMapByTitle
+		bookMapByTitle.put(bookTitle, newBook);
+
+		//Add code to allow the user to enter the title to search the book inventory
+		System.out.println("enter a book title to search");
+		String searchBookTitle = keyboard.nextLine();
+
+		//containsKey Returns true if the key exists
+		if (bookMapByTitle.containsKey(searchBookTitle)) {
+
+			System.out.println("Found book: " + bookMapByTitle.get(searchBookTitle));
+
+		} else {
+			System.out.println("Book not found: " + searchBookTitle);
+		}
+
+		//M04L23 Create a TreeMap where the key is the year, and the value is a list of books published that year. Where each year only maps to one list of books. If the year already exists, we don’t replace the list — we just add to it.
+
+		TreeMap<Integer, List<Book>> booksByYear = new TreeMap<>();
+		System.out.println("M04L23 Create a TreeMap");
+		for (Book currentBook : bookInventory) {
+			booksByYear.putIfAbsent(currentBook.getYear(), new ArrayList<>());
+			booksByYear.get(currentBook.getYear()).add(currentBook);
+		}
+		//M04L23 Since TreeMap keeps keys sorted, when you iterate through booksByYear.entrySet(), books are automatically grouped and printed in year order.
+		System.out.println("M04L23 books are automatically grouped and printed in year order: ");
+		for (Map.Entry<Integer, List<Book>> entry : booksByYear.entrySet()) {
+			System.out.println("\nYear: " + entry.getKey());
+			for (Book book : entry.getValue()) {
+				System.out.println(book);
+			}
+		}
+
 	}//END MAIN
-	
-	
+
+
 	//METHODS:
-	
+
 	public static List<Book> findBooksByAuthor(List<Book> inventory, String author) {
 		List<Book> results = new ArrayList<>();
 		for (Book currentBook : inventory) {
@@ -178,8 +195,8 @@ public class L19CollectionSortBooksLinkedList
 		}
 		return results;
 	}//end find books
-	
-		
+
+
 	public static void printBooks(List<Book> books, String author, int year) {
 		String label;
 		if (year != -1) {

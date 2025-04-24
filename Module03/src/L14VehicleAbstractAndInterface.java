@@ -63,6 +63,7 @@ interface Electric {
 
 //interface for gas-powered vehicle
 interface GasPowered {
+	
 	void refuelGas();
 }
 

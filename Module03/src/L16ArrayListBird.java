@@ -10,29 +10,29 @@ public class L16ArrayListBird {
 		try {
 			// Stores the bird objects in an ArrayList
 			ArrayList<Birds> birds = birdSetup("birds.txt");
-			
+
 			//Displays all bird details, including an interesting fact for each bird type
 			displayAllBirds(birds);
 			//Displays a table of birdst that can swim
 			displaySwimmer(birds);
-			
+
 		}catch(FileNotFoundException e) {
 			System.out.println("File not found.");
 		}
 
-//Array list of intergers
-ArrayList<Integer> myList = new ArrayList<>();
+		//Array list of intergers
+		ArrayList<Integer> myList = new ArrayList<>();
 
 	}//end main
 
 	// Reads bird data from a file  
 	public static ArrayList<Birds> birdSetup(String filename) throws FileNotFoundException {
-		
+
 		//Create ArrayList of bird objects
 		ArrayList<Birds> birds = new ArrayList<>();
-		
+
 		Scanner fileScanner = new Scanner(new File(filename));
-		
+
 		while (fileScanner.hasNext()) {
 			//take first line in file
 			fileScanner.nextLine();
@@ -66,17 +66,17 @@ ArrayList<Integer> myList = new ArrayList<>();
 	//Display type
 	public static String getType(Birds bird) {
 		String type = "unknown";
-				if (bird instanceof Penguin) {
-            type = "Penguin";
-        } else if (bird instanceof Duck) {
-            type = "Duck";
-        } else if (bird instanceof Ostrich) {
-            type = "Ostrich";
-        } else if (bird instanceof SootyTern) {
-            type = "Sooty Tern";
-        } else {
-            type = "Unknown";
-        }
+		if (bird instanceof Penguin) {
+			type = "Penguin";
+		} else if (bird instanceof Duck) {
+			type = "Duck";
+		} else if (bird instanceof Ostrich) {
+			type = "Ostrich";
+		} else if (bird instanceof SootyTern) {
+			type = "Sooty Tern";
+		} else {
+			type = "Unknown";
+		}
 		return type;
 	}
 	//Display all birds 
@@ -92,7 +92,7 @@ ArrayList<Integer> myList = new ArrayList<>();
 	// Method to find all swimming birds
 	public static ArrayList<Swimmer> findSwimmers(ArrayList<Birds> birds){
 		ArrayList<Swimmer> swimmers = new ArrayList<>();
-		
+
 		for (Birds bird : birds){
 			if (bird instanceof Swimmer){
 				swimmers.add((Swimmer) bird);
@@ -108,11 +108,11 @@ ArrayList<Integer> myList = new ArrayList<>();
 		System.out.println("Bird	Type	Swim Speed");
 		System.out.println("----------------------------");
 		for  (Swimmer swimmer : swimmers) {
-	        Birds bird = (Birds) swimmer;  // cast to access getName() and getType()
-	        System.out.println(bird.getName() + "	" + getType(bird) + "	   " + swimmer.swim());
-	    }
+			Birds bird = (Birds) swimmer;  // cast to access getName() and getType()
+			System.out.println(bird.getName() + "	" + getType(bird) + "	   " + swimmer.swim());
+		}
 	}
-	
+
 }//endL16ArrayListBird
 
 

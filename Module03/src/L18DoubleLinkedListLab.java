@@ -65,18 +65,21 @@ class DoublyLinkedListL18
 	public void insertAtEnd(int data)
 	{
 		NodeL18 newNode = new NodeL18(data);
-		if (head == null)
+		//empty linkedlist, newnode is head
+		if (head == null) 
 		{
 			head = newNode;
+		//linkedlist has node(s)
 		} else
 		{
-			NodeL18 temp = head;
-			while (temp.next != null)
+			NodeL18 temp = head;       //start from head
+			while (temp.next != null)  //ultil tail : temp.next = null , temp is tail
 			{
-				temp = temp.next;
+				temp = temp.next;		//move temp to the right 1 step
 			}
-			temp.next = newNode;
-			newNode.prev = temp; // Backward link
+			//When while stop, is at the end, then do:
+			temp.next = newNode;	//Link temp (tail node) to the new node
+			newNode.prev = temp;    //Backward link new node to temp 
 		}
 	}
 
@@ -94,18 +97,21 @@ class DoublyLinkedListL18
 	}
 
 	// Students must complete this method
+	
 	public void insertAtHead(int data)
 	{
 		System.out.println("Implement Insert at the Head:" + data);
 		NodeL18 newNode = new NodeL18(data);
-		
+		//empty linked list, new node is head
 		if (head == null)
 		{
 			head = newNode;
+		
+		//linkedlist has node(s)
 		} else {
-			newNode.next = head;
-			head.prev = newNode;
-			head = newNode;
+			newNode.next = head; //Link newnode to head
+			head.prev = newNode; //Backward link newnode to head
+			head = newNode;		 //update now newnode is head
 
 		}
 	}
@@ -119,7 +125,8 @@ class DoublyLinkedListL18
 		boolean found = false;
 		
 		//find right node to delete
-		while (current != null && !found){
+		while (current != null && !found){ //iterate through the linkedlist ultil on node match delete value
+			
 			if (current.data == data){
 				found = true;
 			} else{
@@ -127,17 +134,20 @@ class DoublyLinkedListL18
 				current = current.next;
 			}
 		}
-		////delete node
+		
+		//if found is true, delete node
 		if (found){
+			//found node (node to delete) is head
 			if (previous == null){
-				head = current.next;
-				if (head != null){
-					head.prev = null;
+				head = current.next;    //move head to the next node on the right
+				if (head != null){		
+					head.prev = null;	
 				}
+			//found node (node to delete) is not head
 			} else{
-				previous.next = current.next;
-				if (current.next != null){
-					current.next.prev = previous;
+				previous.next = current.next;	//skip current (node to delete), relink previous to next
+				if (current.next != null){		   //if current is not a tail
+					current.next.prev = previous;  //need backward link next to previous
 				}
 			}
 		}
